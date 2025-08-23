@@ -39,13 +39,11 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
       sectionTitle('Booked Patients'),
       if (appts.isEmpty)
         const Card(child: ListTile(title: Text('No appointments'))),
-      ...appts
-          .map((a) => Card(
-              child: ListTile(
-                  title: Text('${dateStr(a.slot)} ${timeStr(a.slot)}'),
-                  subtitle: Text(
-                      'Patient: ${repo.getPatient(a.patientId)?.name ?? a.patientId}'))))
-          .toList(),
+      ...appts.map((a) => Card(
+          child: ListTile(
+              title: Text('${dateStr(a.slot)} ${timeStr(a.slot)}'),
+              subtitle: Text(
+                  'Patient: ${repo.getPatient(a.patientId)?.name ?? a.patientId}'))))
     ]);
   }
 
@@ -53,17 +51,15 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
     final slots = repo.generateSlots(days: 7);
     return ListView(padding: const EdgeInsets.all(12), children: [
       sectionTitle('Toggle Unavailable (will hide slots from patients)'),
-      ...slots
-          .map((s) => Card(
-              child: SwitchListTile(
-                  title: Text('${dateStr(s)} ${timeStr(s)}'),
-                  value: repo.isUnavailable(widget.doctorId, s),
-                  onChanged: (v) {
-                    if (repo.isBooked(widget.doctorId, s)) return;
-                    repo.toggleUnavailable(widget.doctorId, s);
-                    setState(() {});
-                  })))
-          .toList()
+      ...slots.map((s) => Card(
+          child: SwitchListTile(
+              title: Text('${dateStr(s)} ${timeStr(s)}'),
+              value: repo.isUnavailable(widget.doctorId, s),
+              onChanged: (v) {
+                if (repo.isBooked(widget.doctorId, s)) return;
+                repo.toggleUnavailable(widget.doctorId, s);
+                setState(() {});
+              })))
     ]);
   }
 }
