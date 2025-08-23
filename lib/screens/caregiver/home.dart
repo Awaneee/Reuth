@@ -228,14 +228,14 @@ import 'package:flutter/material.dart';
 import '../../data/repo.dart';
 import '../../widgets/common.dart';
 
-class CaregiverHome extends StatefulWidget {
-  const CaregiverHome({super.key});
-
+class CaregiverHomeScreen extends StatefulWidget {
+  final String caregiverId;
+  const CaregiverHomeScreen({super.key, required this.caregiverId});
   @override
-  State<CaregiverHome> createState() => _CaregiverHomeState();
+  State<CaregiverHomeScreen> createState() => _CaregiverHomeScreenState();
 }
 
-class _CaregiverHomeState extends State<CaregiverHome> {
+class _CaregiverHomeScreenState extends State<CaregiverHomeScreen> {
   final idCtrl = TextEditingController();
   final nameCtrl = TextEditingController();
   final docCtrl = TextEditingController();
@@ -338,7 +338,10 @@ class _CaregiverHomeState extends State<CaregiverHome> {
                     onPressed: () {
                       final pid = prescPidCtrl.text.trim();
                       if (pid.isEmpty) {
-                        _showMessage('Please enter a Patient ID');
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('Please enter a Patient ID')),
+                        );
                         return;
                       }
                       final patient = repo.getPatient(pid);
@@ -363,23 +366,15 @@ class _CaregiverHomeState extends State<CaregiverHome> {
             ),
           ),
           sectionTitle('Patients'),
-          if (patients.isEmpty)
-            const Center(
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Text('No patients added yet'),
-              ),
-            )
-          else
-            ...patients
-                .map((p) => Card(
-                      child: ListTile(
-                        title: Text('${p.name} (${p.id})'),
-                        subtitle: Text(
-                            'Doctor: ${p.doctorId} • Rx: ${p.prescriptions.length}'),
-                      ),
-                    ))
-                .toList(),
+          ...patients
+              .map((p) => Card(
+                    child: ListTile(
+                      title: Text('${p.name} (${p.id})'),
+                      subtitle: Text(
+                          'Doctor: ${p.doctorId} • Rx: ${p.prescriptions.length}'),
+                    ),
+                  ))
+              .toList(),
         ],
       ),
     );
@@ -423,15 +418,7 @@ class _PrescriptionEntryScreenState extends State<PrescriptionEntryScreen> {
     repo.addPrescription(
       widget.pid,
       Prescription(
-        name: name,
-        dose: dose,
-        frequency: freq,
-        reminders: const [],
-      ),
-    );
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Prescription saved successfully')),
+          name: name, dose: dose, frequency: freq, reminders: const []),
     );
 
     Navigator.pop(context); // Go back to CaregiverHome
@@ -446,24 +433,19 @@ class _PrescriptionEntryScreenState extends State<PrescriptionEntryScreen> {
         child: Column(
           children: [
             TextField(
-              controller: nameCtrl,
-              decoration: const InputDecoration(labelText: 'Medicine Name'),
-            ),
+                controller: nameCtrl,
+                decoration: const InputDecoration(labelText: 'Medicine Name')),
             const SizedBox(height: 10),
             TextField(
-              controller: doseCtrl,
-              decoration: const InputDecoration(labelText: 'Dose'),
-            ),
+                controller: doseCtrl,
+                decoration: const InputDecoration(labelText: 'Dose')),
             const SizedBox(height: 10),
             TextField(
-              controller: freqCtrl,
-              decoration: const InputDecoration(labelText: 'Frequency'),
-            ),
+                controller: freqCtrl,
+                decoration: const InputDecoration(labelText: 'Frequency')),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: _submit,
-              child: const Text('Save Prescription'),
-            ),
+                onPressed: _submit, child: const Text('Save Prescription')),
           ],
         ),
       ),

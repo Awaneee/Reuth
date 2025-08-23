@@ -73,10 +73,7 @@
 // }
 
 import 'package:flutter/material.dart';
-import 'package:hackto/screens/caregiver/login.dart';
-
-import 'screens/patient/login.dart';
-import 'screens/doctor/login.dart';
+import 'package:hackto/screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -88,6 +85,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Reuth Hospital',
       theme: ThemeData(primarySwatch: Colors.blue),
       home: const RoleSelectScreen(), // Use the unified RoleSelectScreen
@@ -101,37 +99,7 @@ class RoleSelectScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Select Role')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const PatientLoginScreen()),
-              ),
-              child: const Text('Patient Login'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const DoctorLogin()),
-              ),
-              child: const Text('Doctor Login'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const CaregiverLoginScreen()),
-              ),
-              child: const Text('Caregiver Portal'),
-            ),
-          ],
-        ),
-      ),
+      body: LoginScreen(),
     );
   }
 }
