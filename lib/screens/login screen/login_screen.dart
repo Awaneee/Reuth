@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
           isValid = false;
         }
         if (isValid) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => PatientHomeScreen(
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
           isValid = false;
         }
         if (isValid) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => DoctorHomeScreen(
@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
           isValid = false;
         }
         if (isValid) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => CaregiverHomeScreen(

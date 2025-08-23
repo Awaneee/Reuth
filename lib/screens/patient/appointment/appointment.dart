@@ -36,10 +36,10 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     final cs = customColorScheme;
     final dateFormat = DateFormat.yMMMMd();
 
-    // Generate last 7 days including today
-    final last7Days = List.generate(
-      7,
-      (i) => DateTime.now().subtract(Duration(days: 6 - i)),
+    // Generate last 5 days including today
+    final last5Days = List.generate(
+      5,
+      (i) => DateTime.now().subtract(Duration(days: 4 - i)),
     );
 
     // Example doctor slots
@@ -101,16 +101,16 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 height: 80,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: last7Days.length,
+                  itemCount: last5Days.length,
                   separatorBuilder: (_, __) => const SizedBox(width: 8),
                   itemBuilder: (context, index) {
-                    final day = last7Days[index];
+                    final day = last5Days[index];
                     final isSelected = DateUtils.isSameDay(day, selectedDate);
 
                     return GestureDetector(
                       onTap: () => setState(() => selectedDate = day),
                       child: Container(
-                        width: 70,
+                        width: 69,
                         decoration: BoxDecoration(
                           color: isSelected
                               ? cs.primary
