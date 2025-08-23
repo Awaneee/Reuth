@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackto/screens/login%20screen/login_screen.dart';
+import 'package:hackto/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Reuth Hospital',
-      home: const LoginScreen(), // Use the unified RoleSelectScreen
+      home: const SplashScreen(), // Use the unified RoleSelectScreen
     );
   }
 }
