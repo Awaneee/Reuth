@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../patient/home.dart';
+import '../patient/home/home.dart';
 import '../caregiver/home.dart';
 import '../doctor/home.dart';
 import 'package:hackto/coolors.dart' as coolors;
