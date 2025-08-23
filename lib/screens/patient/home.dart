@@ -498,13 +498,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:hackto/main.dart';
-import 'package:hackto/screens/role_select.dart';
 
 class PatientHomeScreen extends StatefulWidget {
-  final String pid;
-  final String did;
+  final String patientId;
+  final String doctorId;
 
-  const PatientHomeScreen({super.key, required this.pid, required this.did});
+  const PatientHomeScreen(
+      {super.key, required this.patientId, required this.doctorId});
 
   @override
   State<PatientHomeScreen> createState() => _PatientHomeScreenState();
@@ -597,7 +597,7 @@ class DashboardScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 6,
             offset: const Offset(0, 3),
           ),
@@ -761,7 +761,7 @@ class TreatmentPlanScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 6,
             offset: const Offset(0, 3),
           ),
@@ -803,7 +803,7 @@ class TreatmentPlanScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withValues(alpha: 0.05),
                   blurRadius: 6,
                   offset: const Offset(0, 3),
                 ),

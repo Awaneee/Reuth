@@ -59,13 +59,14 @@ import 'package:flutter/material.dart';
 import '../../data/repo.dart';
 import '../../widgets/common.dart';
 
-class CaregiverHome extends StatefulWidget {
-  const CaregiverHome({super.key});
+class CaregiverHomeScreen extends StatefulWidget {
+  final String caregiverId;
+  const CaregiverHomeScreen({super.key, required this.caregiverId});
   @override
-  State<CaregiverHome> createState() => _CaregiverHomeState();
+  State<CaregiverHomeScreen> createState() => _CaregiverHomeScreenState();
 }
 
-class _CaregiverHomeState extends State<CaregiverHome> {
+class _CaregiverHomeScreenState extends State<CaregiverHomeScreen> {
   final idCtrl = TextEditingController();
   final nameCtrl = TextEditingController();
   final docCtrl = TextEditingController();
@@ -101,11 +102,20 @@ class _CaregiverHomeState extends State<CaregiverHome> {
               padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
-                  TextField(controller: idCtrl, decoration: const InputDecoration(labelText: 'Patient ID (PID)')),
-                  TextField(controller: nameCtrl, decoration: const InputDecoration(labelText: 'Name')),
-                  TextField(controller: docCtrl, decoration: const InputDecoration(labelText: 'Doctor ID (DID)')),
+                  TextField(
+                      controller: idCtrl,
+                      decoration:
+                          const InputDecoration(labelText: 'Patient ID (PID)')),
+                  TextField(
+                      controller: nameCtrl,
+                      decoration: const InputDecoration(labelText: 'Name')),
+                  TextField(
+                      controller: docCtrl,
+                      decoration:
+                          const InputDecoration(labelText: 'Doctor ID (DID)')),
                   const SizedBox(height: 8),
-                  ElevatedButton(onPressed: _addPatient, child: const Text('Add Patient')),
+                  ElevatedButton(
+                      onPressed: _addPatient, child: const Text('Add Patient')),
                 ],
               ),
             ),
@@ -128,7 +138,8 @@ class _CaregiverHomeState extends State<CaregiverHome> {
                       final pid = prescPidCtrl.text.trim();
                       if (pid.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Please enter a Patient ID')),
+                          const SnackBar(
+                              content: Text('Please enter a Patient ID')),
                         );
                         return;
                       }
@@ -160,7 +171,8 @@ class _CaregiverHomeState extends State<CaregiverHome> {
               .map((p) => Card(
                     child: ListTile(
                       title: Text('${p.name} (${p.id})'),
-                      subtitle: Text('Doctor: ${p.doctorId} • Rx: ${p.prescriptions.length}'),
+                      subtitle: Text(
+                          'Doctor: ${p.doctorId} • Rx: ${p.prescriptions.length}'),
                     ),
                   ))
               .toList(),
@@ -175,7 +187,8 @@ class PrescriptionEntryScreen extends StatefulWidget {
   const PrescriptionEntryScreen({super.key, required this.pid});
 
   @override
-  State<PrescriptionEntryScreen> createState() => _PrescriptionEntryScreenState();
+  State<PrescriptionEntryScreen> createState() =>
+      _PrescriptionEntryScreenState();
 }
 
 class _PrescriptionEntryScreenState extends State<PrescriptionEntryScreen> {
@@ -197,7 +210,8 @@ class _PrescriptionEntryScreenState extends State<PrescriptionEntryScreen> {
 
     repo.addPrescription(
       widget.pid,
-      Prescription(name: name, dose: dose, frequency: freq, reminders: const []),
+      Prescription(
+          name: name, dose: dose, frequency: freq, reminders: const []),
     );
 
     Navigator.pop(context); // Go back to CaregiverHome
@@ -211,13 +225,20 @@ class _PrescriptionEntryScreenState extends State<PrescriptionEntryScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            TextField(controller: nameCtrl, decoration: const InputDecoration(labelText: 'Medicine Name')),
+            TextField(
+                controller: nameCtrl,
+                decoration: const InputDecoration(labelText: 'Medicine Name')),
             const SizedBox(height: 10),
-            TextField(controller: doseCtrl, decoration: const InputDecoration(labelText: 'Dose')),
+            TextField(
+                controller: doseCtrl,
+                decoration: const InputDecoration(labelText: 'Dose')),
             const SizedBox(height: 10),
-            TextField(controller: freqCtrl, decoration: const InputDecoration(labelText: 'Frequency')),
+            TextField(
+                controller: freqCtrl,
+                decoration: const InputDecoration(labelText: 'Frequency')),
             const SizedBox(height: 20),
-            ElevatedButton(onPressed: _submit, child: const Text('Save Prescription')),
+            ElevatedButton(
+                onPressed: _submit, child: const Text('Save Prescription')),
           ],
         ),
       ),
