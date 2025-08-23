@@ -277,7 +277,8 @@ class _CaregiverHomeState extends State<CaregiverHome> {
     nameCtrl.clear();
     docCtrl.clear();
 
-    _showMessage('Patient added successfully. They can now login with PID & DID.');
+    _showMessage(
+        'Patient added successfully. They can now login with PID & DID.');
     setState(() {});
   }
 
@@ -446,8 +447,7 @@ class _PrescriptionEntryScreenState extends State<PrescriptionEntryScreen> {
           children: [
             TextField(
               controller: nameCtrl,
-              decoration:
-                  const InputDecoration(labelText: 'Medicine Name'),
+              decoration: const InputDecoration(labelText: 'Medicine Name'),
             ),
             const SizedBox(height: 10),
             TextField(
