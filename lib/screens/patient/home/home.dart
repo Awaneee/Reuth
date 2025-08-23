@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hackto/data/repo.dart';
 import 'package:hackto/main.dart';
+import '../appointment/appointment.dart';
 
 // ---------------- PATIENT HOME ----------------
 class PatientHomeScreen extends StatefulWidget {
@@ -39,20 +40,6 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Reuth Hospital'),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => const MyApp()),
-            );
-          },
-        ),
-      ),
       body: IndexedStack(
         index: _currentIndex,
         children: _screens,
@@ -276,14 +263,6 @@ class PrescriptionScreen extends StatelessWidget {
       },
     );
   }
-}
-
-// ---------- APPOINTMENTS ----------
-class AppointmentScreen extends StatelessWidget {
-  const AppointmentScreen({super.key});
-  @override
-  Widget build(BuildContext context) =>
-      const Center(child: Text("Appointment Screen Placeholder"));
 }
 
 // ---------- MEDICATION TRACKER ----------
