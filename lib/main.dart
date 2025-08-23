@@ -74,9 +74,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:hackto/screens/caregiver/login.dart';
-import 'screens/caregiver/home.dart';
+
 import 'screens/patient/login.dart';
-import 'screens/doctor/login.dart'; // <-- Import doctor login
+import 'screens/doctor/login.dart';
 
 void main() {
   runApp(const MyApp());

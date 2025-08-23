@@ -91,10 +91,10 @@
 //     );
 //   }
 // }
-
 import 'package:flutter/material.dart';
-import '../../data/repo.dart';
+import 'package:hackto/data/repo.dart';
 import 'home.dart';
+
 
 class PatientLoginScreen extends StatefulWidget {
   const PatientLoginScreen({super.key});
@@ -118,7 +118,9 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
       return;
     }
 
+    // ✅ Check in Repo
     final patient = repo.getPatient(pid);
+
     if (patient != null && patient.doctorId == did) {
       Navigator.pushReplacement(
         context,
