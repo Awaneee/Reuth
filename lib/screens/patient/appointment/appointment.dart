@@ -52,6 +52,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       "05:00 PM",
     ];
 
+    final size = MediaQuery.of(context).size;
+
     return Theme(
       data: Theme.of(context).copyWith(colorScheme: customColorScheme),
       child: Scaffold(
@@ -61,6 +63,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
           backgroundColor: cs.primary,
           foregroundColor: cs.onPrimary,
           elevation: 0,
+          automaticallyImplyLeading: false,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -96,7 +99,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               ),
               const SizedBox(height: 20),
 
-              // Last 7 days row
+              // Last 5 days row
               SizedBox(
                 height: 80,
                 child: ListView.separated(
@@ -110,7 +113,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                     return GestureDetector(
                       onTap: () => setState(() => selectedDate = day),
                       child: Container(
-                        width: 69,
+                        width: size.width / 6,
                         decoration: BoxDecoration(
                           color: isSelected
                               ? cs.primary
