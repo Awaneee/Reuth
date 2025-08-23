@@ -1405,6 +1405,7 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'package:hackto/data/repo.dart';
 import 'package:hackto/main.dart';
 
 // ---------------- PATIENT HOME ----------------
@@ -1430,9 +1431,9 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
       DashboardScreen(navigateTo: _navigateToScreen),
       const AppointmentScreen(),
       const TreatmentPlanScreen(),
-      MedicationTrackerScreen(pid: widget.pid),
+      MedicationTrackerScreen(pid: widget.patientId),
       const ChatbotScreen(),
-      PrescriptionScreen(pid: widget.pid),
+      PrescriptionScreen(pid: widget.patientId),
     ]);
   }
 
