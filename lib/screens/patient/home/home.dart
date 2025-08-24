@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hackto/screens/chatbot_screen.dart';
 import 'package:hackto/screens/patient/chatbot/chatbot.dart';
 import 'package:hackto/screens/patient/medication/medication.dart';
 import 'package:hackto/screens/patient/prescription/prescription.dart';
 import '../appointment/appointment.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PatientHomeScreen extends StatefulWidget {
   final String patientId;
@@ -27,16 +27,14 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
   @override
   void initState() {
     super.initState();
-    _screens = [
+    _screens.addAll([
       DashboardScreen(
-        patientId: widget.patientId,
-        navigateTo: _navigateToScreen,
-      ),
-      const AppointmentScreen(), // Index 1
-      MedicationScreen(patientId: widget.patientId), // Index 2
-      const ChatbotScreen(), // Index 3
-      PrescriptionScreen(pid: widget.patientId), // Index 4
-    ];
+          patientId: widget.patientId, navigateTo: _navigateToScreen),
+      const AppointmentScreen(),
+      MedicationScreen(patientId: widget.patientId),
+      const ChatbotScreen(),
+      PrescriptionScreen(pid: widget.patientId),
+    ]);
   }
 
   void _navigateToScreen(int index) {
